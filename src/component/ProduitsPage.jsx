@@ -83,7 +83,7 @@ const editClick = (emp) =>{
 
 const createClick =async () => {
  // e.preventDefault();
-  const newEmploye = {
+  const newProduit = {
     Libelle,
     PU,
     Description,
@@ -91,7 +91,7 @@ const createClick =async () => {
     DatePeremption
   }
   try {
-    const response=  await ProduitsAPI.addProduit(newEmploye);
+    const response=  await ProduitsAPI.addProduit(newProduit);
        fetchProduits();
        alert(response) 
 
@@ -101,7 +101,7 @@ const createClick =async () => {
 }
 
 const updateClick = async ()=>{
-  const EditEmploye = {
+  const EditProduit = {
     idProduit,
     Libelle,
     PU,
@@ -110,7 +110,7 @@ const updateClick = async ()=>{
     DatePeremption
   }
   try {
-  const response=  await ProduitsAPI.updateProduit(idProduit,EditEmploye);
+  const response=  await ProduitsAPI.updateProduit(idProduit,EditProduit);
   fetchProduits();
    alert(response) 
  } catch (error) {
@@ -128,7 +128,7 @@ const updateClick = async ()=>{
     data-bs-toggle="modal"
     data-bs-target="#exampleModalCenter"
     onClick={() => addClick()}>
-        Ajouter Employe
+        Ajouter Produit
     </button>
       <div className="form-group">
         <input
@@ -153,8 +153,8 @@ const updateClick = async ()=>{
         </thead>
         <tbody>
           {originalProduits.map((Produit) => (
-            <tr key={Produit.ProduitID}>
-              <td>{Produit.ProduitID}</td>
+            <tr key={Produit.idProduit}>
+              <td>{Produit.idProduit}</td>
               <td>
                   {Produit.Libelle}
               </td>
@@ -222,7 +222,7 @@ const updateClick = async ()=>{
       </div>
       <div className="modal-footer">
         <button type="button" className="btn btn-secondary"   data-bs-dismiss="modal" aria-label="Close">Fermer</button>
-        {idProduit=== undefined?
+        {idProduit.length === 0?
         <button type="button"
         className="btn btn-success"
         onClick={() => createClick()}
